@@ -11,12 +11,17 @@ class GoString(Structure):
 def get_go_string(val):
     return GoString(val.encode('utf-8'), len(val))
 
+def get_go_path(file):
+    if not os.path.isabs(file) and file:
+        file = os.path.join(os.getcwd(),file)
+    return get_go_string(file)
+
 def render_template(template, value_file, output):
-    template = get_go_string(template)
-    value_file = get_go_string(value_file)
-    output = get_go_string(output)
+    template = get_go_path(template)
+    value_file = get_go_path(value_file)
+    output = get_go_path(output)
 
     lib.RenderTemplate.argtypes = [GoString, GoString, GoString]
     lib.RenderTemplate(template, value_file, output)
 
-# render_template('sample.tmpl', 'values.yml','output.txt')
+# render_template('tests/sample.tmpl', 'tests/values.yml','')

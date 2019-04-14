@@ -5,7 +5,6 @@ import unittest
 import go_template
 from go_template.utils import sha256sum
 
-
 class TestMethods(unittest.TestCase):
     def test_add(self):
         test_dir = os.path.dirname(__file__)
