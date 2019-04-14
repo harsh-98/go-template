@@ -6,10 +6,8 @@ python:
   - 3.6
 
 install:
-  - pip install codecov
+  - pip install -r setup_requirements.txt
 
 script:
   - python -m unittest discover
 
-after_success:
-  - codecov

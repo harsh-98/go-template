@@ -1,4 +1,4 @@
-# project-template-python
+# Go-template
 
 [![PyPI Version](https://img.shields.io/pypi/v/project-template-python.svg)](https://pypi.python.org/pypi/project-template-python)
 [![Build Status](https://img.shields.io/travis/SixQuant/project-template-python/master.svg)](https://travis-ci.org/SixQuant/project-template-python)
@@ -52,21 +52,21 @@ __NOTE__: Paths provided to render_template should either be absolute path or re
 
 
 ## Motivation
-Currently, there is no python package which exposes golang `text/template` functionality to python. And I am on the journey of learning about interoperability between different languages. So, I started working on this as an experiment.
+Currently, there is no python package which exposes golang `text/template` functionality to python. And I am in the process of learning about interoperability between different languages. So, I started working on this as a learning project.
 
 ## Explanation
 Golang library cannot be directly used in python. Firstly, we have to compile it as shared object or archive for interoperability with C. And then create python bindings for this C object.
 
-Among many Python execution environment, [CPython](https://github.com/python/cpython) is the original Python implementation. We can use cpython api for creating python wrapper, but the wrapper code is in C. There is a library [gopy](https://github.com/go-python/gopy) which exactly does this. But it works only on go1.5 and for python2.
+[CPython](https://github.com/python/cpython) is the original Python implementation and provides cpython API for creating python wrapper, but the wrapping code is in C. There is a library [gopy](https://github.com/go-python/gopy) which exactly uses this approach. But it works only on go1.5 and for python2.
 
-If we want to write the wrapping code in python, there is [Cython](https://cython.org/) and [ctypes](https://docs.python.org/3/library/ctypes.html). Ctypes allow directly importing the C library and passing calling functions through its interface. This project uses ctypes for calling go functions.
+If we want to write the wrapping code in python, there are [Cython](https://cython.org/) and [ctypes](https://docs.python.org/3/library/ctypes.html). Ctypes allow directly importing the C library and calling functions through its interface. This project uses `ctypes` for calling go functions.
 
-When a golang library is compiled as shared object, [cgo](https://golang.org/cmd/cgo/) handles exposing functions and data type conversion. Using ctypes, we can only modify simple data type, string, int, float, bool. I tried creating class python which should be converted to structs, but it failed.
+When a golang library is compiled as shared object, [cgo](https://golang.org/cmd/cgo/) handles exposing functions and data type conversion. Using ctypes, we can only modify simple data type, string, int, float, bool. I tried converting python class to golang struct, but it failed.
 
-So, I created a golang wrapper over text/template functionality, which takes simple datatypes. And handles complex operation in this layer. Then a python wrapper over this layer using `ctypes`.
+So, I created a golang wrapper over text/template library, which takes simple datatypes. And handles complex operation in this layer. Then a python wrapper over this layer using `ctypes`.
 
 It is far from complete and doesn't use the best approach. Currently, it has only one function which takes path of template and value file. And depending on the third argument, either writes to stdout if empty  or to file if given its path.
 
 ## License
 
-[MIT](https://github.com/harsh-98/go-template/blob/master/LICENSE)
+This project is licensed under [MIT](https://github.com/harsh-98/go-template/blob/master/LICENSE) License.
