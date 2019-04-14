@@ -21,13 +21,18 @@ def install_deps():
                 new_pkgs.append(resource.strip())
         return new_pkgs
 
-
+def readme():
+        with open('README.md','r') as f:
+               text = f.read()
+        return text
 setup(
         name='go-template',
         version=go_template.__version__,
         packages=find_packages(exclude=("tests",)),
         description='python bindings for go template',
         author='harsh',
+        long_description=readme(),
+        long_description_content_type="text/markdown",
         author_email='harshjniitr@gmail.com',
         license='MIT',
         url='https://github.com/harsh-98/go-template',
@@ -42,5 +47,7 @@ setup(
                      'Programming Language :: Python :: 3.4',
                      'Programming Language :: Python :: 3.5',
                      'Programming Language :: Python :: 3.6',
+                     'Programming Language :: Python :: 3.7',
                      'License :: OSI Approved :: MIT License'],
+        setup_requires=['wheel']
 )
