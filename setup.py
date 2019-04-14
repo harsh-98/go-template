@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-import go-template
+import go_template
 
 def install_deps():
     """Reads requirements.txt and preprocess it
@@ -25,7 +25,7 @@ def install_deps():
 setup(
         name='go-template',
         version=go_template.__version__,
-        packages=find_packages(),
+        packages=find_packages(exclude=("tests",)),
         description='python bindings for go template',
         author='harsh',
         author_email='harshjniitr@gmail.com',
@@ -33,6 +33,9 @@ setup(
         url='https://github.com/harsh-98/go-template',
         keywords='golang template bindings wrapper',
         install_requires=install_deps(),
+        include_package_data=True, #
+        package_data={'bind': ['bind/template.so']}, #
+        data_files=[('bind', ['bind/template.so'])], #
         classifiers=['Development Status :: 3 - Alpha',
                      'Programming Language :: Python :: 2.6',
                      'Programming Language :: Python :: 2.7',
