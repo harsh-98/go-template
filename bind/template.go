@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"io"
+	"path"
 	"gopkg.in/yaml.v2"
 	"text/template"
 	"io/ioutil"
@@ -16,7 +17,8 @@ type store struct{
 }
 
 func tpl(fileName string, vals interface{}, output string) error {
-	tmpl, err := template.New(fileName).ParseFiles(fileName)
+	name := path.Base(fileName)
+	tmpl, err := template.New(name).ParseFiles(fileName)
 	if err != nil {
 		return err
 	}
