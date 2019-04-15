@@ -40,7 +40,7 @@ setup(
         install_requires=install_deps(),
         include_package_data=True, #
         package_data={'bind': ['bind/template.so']}, #
-        data_files=[('bind', ['bind/template.so'])], #
+        data_files=[('bind', ['bind/template.so']), ('',['requirements.txt'])], #
         classifiers=['Development Status :: 3 - Alpha',
                      'Programming Language :: Python :: 2.6',
                      'Programming Language :: Python :: 2.7',
