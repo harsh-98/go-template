@@ -1,7 +1,7 @@
 from ctypes import *
 import os
 
-root_dir = os.path.dirname(os.path.dirname(__file__))
+root_dir = os.path.dirname(__file__)
 shared_lib = os.path.join(root_dir, 'bind', 'template.so')
 lib = cdll.LoadLibrary(shared_lib)
 
